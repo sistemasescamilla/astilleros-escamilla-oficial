@@ -1,0 +1,257 @@
+---
+const projects = [
+  {
+    id: 1,
+    name: "Finzenú",
+    subtitle: "Montaje de Estructura Metálica, Pulpa y Redes de Agua",
+    category: "Montaje Industrial / Redes",
+    specs: { eslora: "60.9 m", manga: "12.4 m" },
+    img: "/images/proyectos/finzenu1.jpg",
+    objective: "Realizar el montaje de la estructura metálica, equipos y el suministro e instalación de las diferentes redes de la draga y barcaza.",
+    process: "Montaje secuencial de pórticos e integración progresiva de equipos por niveles; fabricación de spools y montaje estructural simultáneo para la instalación de redes (lodos, acero y PVC) mediante soldadura, pailería y ensamble mecánico.",
+    machinery: ["2–3 Grúas", "Equipos de Soldadura", "Torquímetros", "Pajarita"]
+  },
+  {
+    id: 4,
+    name: "San Lucas",
+    subtitle: "Construcción de Barcaza",
+    category: "Construcción Naval",
+    specs: { eslora: "25.20 m", manga: "7.010 m" },
+    img: "/images/proyectos/SanLucas.jpg",
+    objective: "Construir planchón con las medidas requeridas por el cliente.",
+    process: "Construcción mediante soldadura WMAW/FCAW de una barcaza incluyendo outfitting.",
+    machinery: ["Máquinas de Soldar", "Grúa"]
+  },
+  {
+    id: 5,
+    name: "Santa Isabel",
+    subtitle: "Construccion de Barcaza",
+    category: "Construcción Naval / Estructuras",
+    img: "/images/proyectos/santaIsabel.jpg",
+    objective: "Ejecutar el armado y ensamble integral de la estructura del casco y cubiertas, incluyendo la instalación de componentes de outfitting.",
+    process: "Armado de previas de elementos estructurales e instalación secuencial: fondo, mamparos transversales y longitudinales, costados, espejo, escudo, cubierta y finalización con outfitting.",
+    machinery: ["Máquinas de soldar (FCAW) , Grúas de izaje,  Equipo de oxicorte , Compresores ,Personal calificado"]
+  }
+];  
+---
+
+<section id="proyectos" class="py-24 bg-blue-950 text-white relative overflow-hidden">
+
+  <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+
+    <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+      <div>
+        <h2 class="text-[#098D37] font-bold tracking-wider uppercase text-sm mb-3">Portafolio</h2>
+        <h3 class="text-4xl md:text-5xl font-bold leading-tight">
+          Proyectos <br/><span class="text-slate-400">Ejecutados</span>
+        </h3>
+        <div class="w-24 h-1 bg-[#098D37] mt-6"></div>
+      </div>
+      <p class="text-slate-400 max-w-sm text-sm leading-relaxed">
+        Cada proyecto refleja nuestro compromiso con la precisión técnica y la excelencia en la industria naval colombiana.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8" id="projects-grid">
+      {projects.map((project) => (
+        <article
+          class="project-card group bg-blue-900/40 border border-white/10 rounded-2xl overflow-hidden hover:border-emerald-500/40 transition-all duration-500"
+          data-id={project.id}
+        >
+          
+          <!-- Imagen con lightbox trigger -->
+          <div
+            class="project-img-trigger relative h-56 overflow-hidden cursor-zoom-in"
+            data-full-img={project.img}
+            data-title={`${project.name} — ${project.subtitle}`}
+          >
+            <img
+              src={project.img}
+              alt={project.name}
+              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-linear-to-t from-blue-950 via-blue-950/30 to-transparent pointer-events-none"></div>
+
+            <!-- Ícono lupa al hacer hover -->
+            <div class="absolute inset-0 flex items-center justify-center bg-blue-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+              <div class="w-12 h-12 bg-[#098D37] rounded-full flex items-center justify-center shadow-xl">
+                <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+              </div>
+            </div>
+
+            <div class="absolute top-4 left-4 bg-[#098D37] text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider pointer-events-none">
+              {project.category}
+            </div>
+
+            {project.specs && (
+              <div class="absolute top-4 right-4 bg-blue-950/80 backdrop-blur-sm border border-white/20 text-white text-xs px-3 py-1.5 rounded-full pointer-events-none">
+                {project.specs.eslora} · {project.specs.manga}
+              </div>
+            )}
+          </div>
+
+          <!-- Contenido -->
+          <div class="p-7">
+            <div class="mb-4">
+              <p class="text-[#098D37] text-lg font-bold uppercase tracking-widest mb-1">{project.name}</p>
+              <h4 class="text-xl font-bold text-white">{project.subtitle}</h4>
+            </div>
+
+            <p class="text-slate-400 text-sm leading-relaxed line-clamp-2 mb-5">{project.objective}</p>
+
+            <div class="flex flex-wrap gap-2 mb-6">
+              {project.machinery.map((m) => (
+                <span class="bg-white/5 border border-white/10 text-slate-300 text-xs px-3 py-1 rounded-full pointer-events-none">
+                  {m}
+                </span>
+              ))}
+            </div>
+
+            <button
+              class="expand-btn flex items-center gap-2 text-white text-sm font-semibold hover:text-[#16c955] transition-colors w-full"
+              data-target={`details-${project.id}`}
+            >
+              <span class="expand-label">Ver proceso completo</span>
+              <svg class="expand-icon w-4 h-4 transition-transform duration-300 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </button>
+
+            <div
+              id={`details-${project.id}`}
+              class="details-panel overflow-hidden max-h-0 transition-all duration-500 ease-in-out"
+            >
+              <div class="pt-5 border-t border-white/10 mt-5">
+                <h5 class="text-xs font-bold uppercase tracking-widest text-white mb-3">Proceso Ejecutado</h5>
+                <p class="text-slate-300 text-sm leading-relaxed">{project.process}</p>
+
+                {project.specs && (
+                  <div class="mt-5 grid grid-cols-2 gap-3">
+                    <div class="bg-white/5 rounded-xl p-4 text-center">
+                      <p class="text-2xl font-bold text-white">{project.specs.eslora}</p>
+                      <p class="text-xs text-slate-400 uppercase tracking-wider mt-1">Eslora</p>
+                    </div>
+                    <div class="bg-white/5 rounded-xl p-4 text-center">
+                      <p class="text-2xl font-bold text-white">{project.specs.manga}</p>
+                      <p class="text-xs text-slate-400 uppercase tracking-wider mt-1">Manga</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+
+        </article>
+      ))}
+    </div>
+
+  </div>
+
+  <!-- Lightbox -->
+  <div
+    id="projects-lightbox"
+    class="fixed inset-0 bg-black/20 z-100 flex items-center justify-center p-4 backdrop-blur-sm transition-all duration-300 opacity-0 pointer-events-none"
+    aria-hidden="true"
+  >
+    <button
+      id="projects-lightbox-close"
+      class="absolute top-6 right-6 text-white/70 hover:text-[#098D37] transition-colors p-2 z-110"
+      aria-label="Cerrar"
+    >
+      <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <img
+      id="projects-lightbox-img"
+      src=""
+      alt="Vista ampliada"
+      class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl transition-transform duration-300 scale-90"
+    />
+
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-center bg-blue-950/90 px-8 py-3 rounded-full border border-[#098D37]/30">
+      <p id="projects-lightbox-caption" class="text-white text-lg font-semibold tracking-wide uppercase"></p>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Lightbox
+  const lightbox  = document.getElementById('projects-lightbox') as HTMLElement;
+  const lbImg     = document.getElementById('projects-lightbox-img') as HTMLImageElement;
+  const lbCaption = document.getElementById('projects-lightbox-caption') as HTMLElement;
+  const closeBtn  = document.getElementById('projects-lightbox-close') as HTMLButtonElement;
+
+  if (lightbox && lbImg) {
+    const openLightbox = (src: string, title: string) => {
+      lbImg.src = src;
+      lbCaption.textContent = title;
+      lightbox.classList.remove('opacity-0', 'pointer-events-none');
+      lightbox.classList.add('opacity-100', 'pointer-events-auto');
+      lbImg.classList.remove('scale-90');
+      lbImg.classList.add('scale-100');
+      document.body.style.overflow = 'hidden';
+      lightbox.setAttribute('aria-hidden', 'false');
+    };
+
+    const closeLightbox = () => {
+      lightbox.classList.add('opacity-0', 'pointer-events-none');
+      lightbox.classList.remove('opacity-100', 'pointer-events-auto');
+      lbImg.classList.remove('scale-100');
+      lbImg.classList.add('scale-90');
+      document.body.style.overflow = '';
+      lightbox.setAttribute('aria-hidden', 'true');
+    };
+
+    document.querySelectorAll('.project-img-trigger').forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const el = trigger as HTMLElement;
+        const src = el.dataset.fullImg ?? '';
+        const title = el.dataset.title ?? '';
+        if (src) openLightbox(src, title);
+      });
+    });
+
+    closeBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeLightbox();
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  }
+
+  // Expand/collapse
+  document.querySelectorAll('.expand-btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const targetId = (btn as HTMLElement).dataset.target!;
+      const panel = document.getElementById(targetId) as HTMLElement;
+      const icon = btn.querySelector('.expand-icon') as HTMLElement;
+      const label = btn.querySelector('.expand-label') as HTMLElement;
+
+      const isOpen = panel.style.maxHeight && panel.style.maxHeight !== '0px';
+
+      if (isOpen) {
+        panel.style.maxHeight = '0px';
+        icon.style.transform = 'rotate(0deg)';
+        label.textContent = 'Ver proceso completo';
+      } else {
+        panel.style.maxHeight = panel.scrollHeight + 'px';
+        icon.style.transform = 'rotate(180deg)';
+        label.textContent = 'Ocultar proceso';
+      }
+    });
+  });
+</script>

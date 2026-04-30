@@ -1,0 +1,61 @@
+---
+const clients = [
+  { name: "Buzca", logo: "/images/clients/buzca.png" },
+  { name: "Cotecmar", logo: "/images/clients/CotecmarLogo.png" },
+  { name: "DIAN", logo: "/images/clients/dian.png" },
+  { name: "MinerosColombia", logo: "/images/clients/mineros.png" },
+  { name: "NFC", logo: "/images/clients/naviera.png" },
+  { name: "Presenmar", logo: "/images/clients/presenmar.png" },
+];
+---
+
+<section id="clientes" class="py-20 bg-white border-t border-slate-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <p class="text-slate-400 font-medium uppercase tracking-[0.2em] text-xs">
+        Empresas que confían en nosotros
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center opacity-70">
+      {clients.map((client) => (
+        <div class="client-logo flex justify-center items-center transition-all duration-500 cursor-pointer h-20 p-3">
+          <img
+            src={client.logo}
+            alt={client.name}
+            class="max-h-full max-w-full w-full h-full object-contain transition-opacity"
+            style="object-fit: contain;"
+          />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Dispositivos con hover real (mouse): aplica grayscale y efecto hover */
+  @media (hover: hover) {
+    .client-logo {
+      filter: grayscale(100%);
+    }
+    .client-logo img {
+      opacity: 0.6;
+    }
+    .client-logo:hover {
+      filter: grayscale(0%);
+    }
+    .client-logo:hover img {
+      opacity: 1;
+    }
+  }
+
+  /* Táctil / móvil: siempre a color completo */
+  @media (hover: none) {
+    .client-logo {
+      filter: grayscale(0%);
+    }
+    .client-logo img {
+      opacity: 0.75;
+    }
+  }
+</style>

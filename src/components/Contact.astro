@@ -1,0 +1,70 @@
+---
+const contactInfo = [
+  {
+    icon: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z",
+    label: "Ubicación",
+    value: "calle No 18 #4 - 35, Pasacaballos, Cartagena de Indias, Bolívar",
+    link: "https://maps.app.goo.gl/QEGJB9egMr5qkZqF6"
+  },
+  {
+    icon: "M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z",
+    label: "Correo Electrónico",
+    value: "negociosescamilla@gmail.com",
+    link: "https://mail.google.com/mail/?view=cm&fs=1&to=negociosescamilla@gmail.com"
+  },
+  {
+    icon: "M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z",
+    label: "Teléfono de Contacto",
+    value: "+57 304 6095493",
+    link: "https://wa.me/message/3EGSFZTTNVOTG1?src=qr"
+  }
+];
+---
+
+<section id="contacto" class="py-24 bg-white overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
+      
+      <div class="flex flex-col justify-center pr-0 lg:pr-12">
+        <h2 class="text-[#098D37] font-bold tracking-wider uppercase text-sm mb-3">Contacto</h2>
+        <h3 class="text-4xl md:text-5xl font-bold text-blue-950 mb-8 leading-tight">
+          Estamos listos para <br/> <span class="text-slate-500 underline decoration-[#098D37] underline-offset-8">hablar de su proyecto</span>
+        </h3>
+        <p class="text-lg text-slate-600 mb-10">
+          Nuestras oficinas y planta operativa están abiertas para atender sus requerimientos técnicos y comerciales de lunes a viernes.
+        </p>
+
+        <div class="space-y-8">
+          {contactInfo.map((item) => (
+            <a href={item.link} target={item.link.startsWith('http') ? "_blank" : "_self"} class="flex items-start gap-5 group">
+              <div class="shrink-0 w-12 h-12 bg-slate-100 text-[#098D37] rounded-xl flex items-center justify-center group-hover:bg-[#098D37] group-hover:text-white transition-all duration-300">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={item.icon}></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">{item.label}</h4>
+                <p class="text-xl font-bold text-blue-950 group-hover:text-[#098D37] transition-colors">{item.value}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="relative min-h-100 lg:min-h-full rounded-3xl overflow-hidden shadow-2xl border-4 border-slate-100">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3925.69657806668!2d-75.5215254!3d10.2860135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e589db216dbd671%3A0x745aec48c0ec685a!2sAstilleros%20Escamilla%20-%20Cartagena%20%7C%20Mantenimiento%20de%20embarcaciones!5e0!3m2!1ses!2sco!4v1772749121604!5m2!1ses!2sco" 
+          width="100%" 
+          height="100%" 
+          style="border:0;" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade"
+          class="grayscale hover:grayscale-0 transition-all duration-700"
+        ></iframe>
+      </div>
+      
+    </div>
+  </div>
+</section>
+

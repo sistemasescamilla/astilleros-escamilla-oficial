@@ -1,0 +1,177 @@
+---
+const services = [
+  {
+    title: "Consultoría, Asesoría e Interventoría",
+    desc: "Acompañamiento técnico experto en cada etapa del proyecto naval: desde la planeación estratégica hasta la supervisión y control de obras.",
+    img: "/images/servicios/consultoria.jpg",
+    icon: "M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+  },
+  {
+    title: "Diseño y Construcción Naval",
+    desc: "Fabricación de embarcaciones nuevas bajo estándares internacionales, con capacidad de diseño modular y construcción en acero o aluminio.",
+    img: "/images/servicios/diseño.jpg",
+    icon: "M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+  },
+  {
+    title: "Reparación, Transformación y Modernización",
+    desc: "Intervención técnica integral de embarcaciones: dique seco, carena, actualización de sistemas y adecuaciones estructurales para extender la vida útil.",
+    img: "/images/servicios/reparacion.jpg",
+    icon: "M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 11-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 011 1V4z"
+  },
+  {
+    title: "Desguace y Reciclaje Naval",
+    desc: "Gestión responsable del fin de vida útil de embarcaciones: desmantelamiento seguro, clasificación de materiales y disposición sostenible de residuos.",
+    img: "/images/servicios/desaguace.jpg",
+    icon: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+  }
+];
+---
+
+<section id="servicios" class="py-24 bg-slate-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+      <div class="max-w-2xl">
+        <h2 class="text-[#098D37] font-bold tracking-wider uppercase text-sm mb-3">Capacidades</h2>
+        <h3 class="text-4xl md:text-5xl font-bold text-blue-950">
+          Soluciones Integrales de <span class="text-slate-500 underline decoration-[#098D37] underline-offset-8">Alto Nivel</span>
+        </h3>
+      </div>
+      <p class="text-slate-600 max-w-sm">Tecnología punta y mano de obra calificada para los desafíos más exigentes del mar.</p>
+    </div>
+
+    <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {services.map((service) => (
+        <div
+          class="service-card group relative rounded-2xl overflow-hidden shadow-md cursor-pointer"
+          style="height: 320px;"
+          data-full-img={service.img}
+          data-title={service.title}
+        >
+          <!-- Imagen de fondo -->
+          <img
+            src={service.img}
+            alt={service.title}
+            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 pointer-events-none"
+            loading="lazy"
+          />
+
+          <!-- Overlay base -->
+          <div class="absolute inset-0 bg-linear-to-t from-blue-950/80 via-blue-950/20 to-transparent transition-opacity duration-500 pointer-events-none"></div>
+
+          <!-- Overlay hover -->
+          <div class="absolute inset-0 bg-blue-950/75 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+          <!-- Estado normal: ícono + título abajo -->
+          <div class="absolute bottom-0 left-0 right-0 p-6 flex items-end gap-4 transition-all duration-500 group-hover:opacity-0 group-hover:translate-y-4 pointer-events-none">
+            <div class="w-11 h-11 bg-[#098D37] text-white rounded-lg flex items-center justify-center shadow-lg shrink-0">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d={service.icon}></path>
+              </svg>
+            </div>
+            <h4 class="text-white text-xl font-bold leading-tight">{service.title}</h4>
+          </div>
+
+          <!-- Estado hover: ícono, título, desc + lupa -->
+          <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-8 gap-4 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 pointer-events-none">
+            <div class="w-14 h-14 bg-[#098D37] text-white rounded-xl flex items-center justify-center shadow-xl">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d={service.icon}></path>
+              </svg>
+            </div>
+            <h4 class="text-white text-xl font-bold leading-tight">{service.title}</h4>
+            <p class="text-slate-200 text-sm leading-relaxed">{service.desc}</p>
+            <span class="inline-flex items-center gap-1.5 text-[#098D37] text-xs font-semibold uppercase tracking-wider mt-1">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+              Ver imagen
+            </span>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+  </div>
+
+  <!-- Lightbox -->
+  <div
+    id="services-lightbox"
+    class="fixed inset-0 bg-black/20 z-100 flex items-center justify-center p-4 backdrop-blur-sm transition-all duration-300 opacity-0 pointer-events-none"
+    aria-hidden="true"
+  >
+    <button
+      id="services-lightbox-close"
+      class="absolute top-6 right-6 text-white/70 hover:text-[#098D37] transition-colors p-2 z-110"
+      aria-label="Cerrar"
+    >
+      <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <img
+      id="services-lightbox-img"
+      src=""
+      alt="Vista ampliada"
+      class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl transition-transform duration-300 scale-90"
+    />
+
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-center bg-blue-950/90 px-8 py-3 rounded-full border border-[#098D37]/30">
+      <p id="services-lightbox-caption" class="text-white text-lg font-semibold tracking-wide uppercase"></p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const lightbox  = document.getElementById('services-lightbox') as HTMLElement;
+  const lbImg     = document.getElementById('services-lightbox-img') as HTMLImageElement;
+  const lbCaption = document.getElementById('services-lightbox-caption') as HTMLElement;
+  const closeBtn  = document.getElementById('services-lightbox-close') as HTMLButtonElement;
+  const grid      = document.getElementById('services-grid') as HTMLElement;
+
+  if (lightbox && lbImg && grid) {
+
+    const openLightbox = (src: string, title: string) => {
+      lbImg.src = src;
+      lbCaption.textContent = title;
+      lightbox.classList.remove('opacity-0', 'pointer-events-none');
+      lightbox.classList.add('opacity-100', 'pointer-events-auto');
+      lbImg.classList.remove('scale-90');
+      lbImg.classList.add('scale-100');
+      document.body.style.overflow = 'hidden';
+      lightbox.setAttribute('aria-hidden', 'false');
+    };
+
+    const closeLightbox = () => {
+      lightbox.classList.add('opacity-0', 'pointer-events-none');
+      lightbox.classList.remove('opacity-100', 'pointer-events-auto');
+      lbImg.classList.remove('scale-100');
+      lbImg.classList.add('scale-90');
+      document.body.style.overflow = '';
+      lightbox.setAttribute('aria-hidden', 'true');
+    };
+
+    grid.addEventListener('click', (e: MouseEvent) => {
+      const card = (e.target as Element).closest('.service-card') as HTMLElement | null;
+      if (!card) return;
+      const src   = card.dataset.fullImg;
+      const title = card.dataset.title ?? '';
+      if (src) openLightbox(src, title);
+    });
+
+    closeBtn?.addEventListener('click', (e: MouseEvent) => {
+      e.stopPropagation();
+      closeLightbox();
+    });
+
+    lightbox.addEventListener('click', (e: MouseEvent) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  }
+</script>

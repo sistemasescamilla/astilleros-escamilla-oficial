@@ -1,0 +1,163 @@
+---
+const facilitiesData = [
+  {
+    img: "/images/Instalaciones/diques.jpg",
+    title: "Puestos de varada y airbags",
+    desc: "Capacidad de 7 puestos de varada y capacidad de subida de 1200 toneladas.",
+    span: "md:col-span-2 md:row-span-2"
+  },  
+  {
+    img: "/images/Instalaciones/TalleresE.jpg",
+    title: "Maquinaria pesada",
+    desc: "Maquinaria pesada complementaria para uso en actividades navales.",
+    span: "md:col-span-1 md:row-span-1"
+  },
+  {
+    img: "/images/Instalaciones/Pintura.jpg",
+    title: "Blasting y pintura",
+    desc: "Preparacion de superficies de acuerdo a normas y estandares de calidad.",
+    span: "md:col-span-1 md:row-span-1"
+  },
+  {
+    img: "/images/Instalaciones/ensamble.jpg",
+    title: "Planta de Ensamblaje Modular",
+    desc: "Optimización de tiempos con construcción por bloques.",
+    span: "md:col-span-2 md:row-span-1"
+  }
+];
+---
+
+<section id="instalaciones" class="py-24 bg-blue-950 text-white overflow-hidden relative">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <h2 class="text-[#098D37] font-bold tracking-wider uppercase text-sm mb-3">Infraestructura</h2>
+      <h3 class="text-4xl md:text-5xl font-bold">Nuestras Instalaciones</h3>
+      <div class="w-24 h-1 bg-[#098D37] mx-auto mt-6"></div>
+      <p class="text-slate-400 italic mt-8 max-w-2xl mx-auto">Haz clic en cualquier imagen para ampliarla y ver los detalles.</p>
+    </div>
+
+    <div id="facilities-grid" class="grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-[250px] md:auto-rows-[220px]">
+      {facilitiesData.map((item) => (
+        <div
+          class={`facility-card group relative overflow-hidden rounded-2xl cursor-pointer ${item.span}`}
+          data-full-img={item.img}
+          data-title={item.title}
+        >
+          <img
+            src={item.img}
+            alt={item.title}
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 pointer-events-none"
+            loading="lazy"
+          />
+
+          <!-- Gradiente base siempre visible -->
+          <div class="absolute inset-0 bg-linear-to-t from-blue-950/80 via-blue-950/10 to-transparent transition-opacity duration-500 pointer-events-none"></div>
+
+          <!-- Overlay hover más oscuro -->
+          <div class="absolute inset-0 bg-blue-950/70 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+
+          <!-- Estado normal: solo título abajo -->
+          <div class="absolute bottom-0 left-0 right-0 p-6 md:p-8 transition-all duration-500 group-hover:opacity-0 group-hover:translate-y-3 pointer-events-none">
+            <h4 class="text-xl md:text-2xl font-bold text-white">{item.title}</h4>
+          </div>
+
+          <!-- Estado hover: título + descripción centrados + ícono lupa -->
+          <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-8 gap-3 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 pointer-events-none">
+            <div class="w-12 h-12 bg-[#098D37] rounded-full flex items-center justify-center shadow-lg mb-1">
+              <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+              </svg>
+            </div>
+            <h4 class="text-xl md:text-2xl font-bold text-white leading-tight">{item.title}</h4>
+            <p class="text-sm md:text-base text-slate-200 leading-relaxed">{item.desc}</p>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-16 text-center">
+      <p class="text-slate-400 italic">Contamos con más de 20,000 m² de área operativa optimizada.</p>
+    </div>
+  </div>
+
+  <!-- Lightbox (sin cambios) -->
+  <div
+    id="lightbox"
+    class="fixed inset-0 bg-black/20 z-100 flex items-center justify-center p-4 backdrop-blur-sm transition-all duration-300 opacity-0 pointer-events-none"
+    aria-hidden="true"
+  >
+    <button
+      id="lightbox-close"
+      class="absolute top-6 right-6 text-white/70 hover:text-emerald-400 transition-colors p-2 z-110"
+      aria-label="Cerrar"
+    >
+      <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <img
+      id="lightbox-img-element"
+      src=""
+      alt="Vista ampliada"
+      class="max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl transition-transform duration-300 scale-90"
+    />
+
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-center bg-blue-950/90 px-8 py-3 rounded-full border border-emerald-500/30">
+      <p id="lightbox-caption-text" class="text-white text-lg font-semibold tracking-wide uppercase"></p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const lightbox        = document.getElementById('lightbox') as HTMLElement;
+  const lightboxImg     = document.getElementById('lightbox-img-element') as HTMLImageElement;
+  const lightboxCaption = document.getElementById('lightbox-caption-text') as HTMLElement;
+  const closeBtn        = document.getElementById('lightbox-close') as HTMLButtonElement;
+  const grid            = document.getElementById('facilities-grid') as HTMLElement;
+
+  if (lightbox && lightboxImg && grid) {
+
+    const openLightbox = (src: string, title: string) => {
+      lightboxImg.src = src;
+      lightboxCaption.textContent = title;
+      lightbox.classList.remove('opacity-0', 'pointer-events-none');
+      lightbox.classList.add('opacity-100', 'pointer-events-auto');
+      lightboxImg.classList.remove('scale-90');
+      lightboxImg.classList.add('scale-100');
+      document.body.style.overflow = 'hidden';
+      lightbox.setAttribute('aria-hidden', 'false');
+    };
+
+    const closeLightbox = () => {
+      lightbox.classList.add('opacity-0', 'pointer-events-none');
+      lightbox.classList.remove('opacity-100', 'pointer-events-auto');
+      lightboxImg.classList.remove('scale-100');
+      lightboxImg.classList.add('scale-90');
+      document.body.style.overflow = '';
+      lightbox.setAttribute('aria-hidden', 'true');
+    };
+
+    grid.addEventListener('click', (e: MouseEvent) => {
+      const card = (e.target as Element).closest('.facility-card') as HTMLElement | null;
+      if (!card) return;
+      const src   = card.dataset.fullImg;
+      const title = card.dataset.title ?? '';
+      if (src) openLightbox(src, title);
+    });
+
+    closeBtn?.addEventListener('click', (e: MouseEvent) => {
+      e.stopPropagation();
+      closeLightbox();
+    });
+
+    lightbox.addEventListener('click', (e: MouseEvent) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  }
+</script>

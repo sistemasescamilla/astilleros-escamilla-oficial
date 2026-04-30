@@ -1,0 +1,85 @@
+---
+// src/components/Navbar.astro
+const links = [
+  { name: 'Inicio', href: '#inicio' },
+  { name: 'Nosotros', href: '#nosotros' },
+  { name: 'Instalaciones', href: '#instalaciones' },
+  { name: 'Servicios', href: '#servicios' },
+  { name: 'Proyectos', href: '#proyectos' },
+  { name: 'Clientes', href: '#clientes' },
+  { name: 'Contacto', href: '#contacto' },
+
+];
+
+import { Image } from "astro:assets";
+import logoImage from "../assets/logo.png";
+---
+
+<header class="fixed w-full z-50 bg-blue-950/90 backdrop-blur-md border-b border-blue-900/50 transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+                
+    
+      <div class="shrink-0 flex items-center">
+        <a href="#inicio" class="flex items-center gap-3 group">
+          <Image 
+            src={logoImage} 
+            alt="Logo Astilleros Escamilla" 
+            class="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+          />
+          <div class="flex flex-col leading-none">
+            <span class="text-white font-bold text-xl tracking-tight">ASTILLEROS</span>
+            <span class="text-[#098D37] font-semibold text-sm tracking-widest">ESCAMILLA LTDA</span>
+          </div>
+        </a>
+      </div>
+
+      <nav class="hidden md:flex space-x-8">
+        {links.map((link) => (
+          <a 
+            href={link.href} 
+            class="text-slate-300 hover:text-[#098D37] font-medium transition-colors duration-300"
+          >
+            {link.name}
+          </a>
+        ))}
+      </nav>
+
+      <div class="md:hidden flex items-center">
+        <button id="mobile-menu-btn" class="text-slate-300 hover:text-white focus:outline-none">
+          <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="mobile-menu" class="hidden md:hidden bg-blue-950 border-t border-blue-900">
+    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+      {links.map((link) => (
+        <a 
+          href={link.href} 
+          class="block px-3 py-2 rounded-md text-base font-medium text-slate-300 hover:text-white hover:bg-emerald-700 transition-colors"
+        >
+          {link.name}
+        </a>
+      ))}
+    </div>
+  </div>
+
+
+
+</header>
+
+<script>
+  // Lógica simple para abrir/cerrar el menú en móviles
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+
+  if (btn && menu) {
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  }
+</script>
